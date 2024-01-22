@@ -27,11 +27,12 @@ def getCameraControls(id,controls):
         command += [ "-C", f"{control}" ]
     data = subprocess.check_output(command)
     output = data.decode()
-    values = output.split('\r\n')
-    return [ int(value) for value in values[:-1] ]
-    
+    values = output.split('\n')
+    #return [ int(value) for value in values[:-1] ]
+    return [ 0, 0, 0]
 def setCameraControls(id,controls):
     command = [ "v4l2-ctl", "-d", f"/dev/video{id}" ]
+
     for control in controls.keys():
         value = controls[control]
         command += [ "-c", f"{control}={value}" ]
@@ -50,7 +51,7 @@ class NicoCameras:
     def __init__(self):
         self.stopped = False
         initializeCameraControls()
-        self.ids = getCameraDevices("See3CAM_CU135") # [0,2]
+        self.ids = [2,4]
         if len(self.ids) == 0:
             self.ids = [0,0]
         elif len(self.ids) == 1:

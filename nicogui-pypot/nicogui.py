@@ -5,7 +5,7 @@ import signal
 import PySimpleGUI as sg
 import cv2
 import numpy as np
-from beeply.notes import beeps
+#from beeply.notes import beeps
 from nicomotion.Motion import Motion
 from nicocameras import NicoCameras, image_shift_xy
 from nicodummy import DummyRobot
@@ -177,7 +177,7 @@ layout = [[
 
 cameras = NicoCameras()
 
-beeper = beeps(250)
+#beeper = beeps(250)
 
 # Create the window and show it without the plot
 window = sg.Window("Nico control GUI", layout, finalize=True)
