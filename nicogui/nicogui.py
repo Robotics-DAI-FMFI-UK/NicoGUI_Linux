@@ -4,7 +4,7 @@ import signal
 import PySimpleGUI as sg
 import cv2
 import numpy as np
-from beeply.notes import beeps
+#from beeply.notes import beeps
 from nicomotors import NicoMotors
 from nicocameras import NicoCameras
 
@@ -138,7 +138,7 @@ layout = [[
 
 cameras = NicoCameras()
 
-beeper = beeps(250)
+#beeper = beeps(250)
 
 # Create the window and show it without the plot
 window = sg.Window("Nico control GUI", layout, finalize=True)

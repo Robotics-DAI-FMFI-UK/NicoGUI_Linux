@@ -61,7 +61,7 @@ class NicoMotors:
         'right-arm3'          : [  3, [0,2532,-0.1],      [2035,2032,2843], [(-45,3140,'up-sideway'),(0,2460,'straight'),(45,2050,'down-attach')], [ -118,  87, -140, 100, True ] ],
         'right-elbow1'        : [  5, [180,2545,0.08789], [1095,1534,2545], [(52,550,'closed'),(90,1040,'right-angled'),(180,2030,'straight')], [ -100,   0, -100, 180, False] ],
         'right-wrist1'        : [ 31, [90,0,-0.045],      [   0,2000,4000], [(-90,4000,'palm-up'),(0,2000,'palm-vertical'),(90,0,'palm-vertical')], [  -80,  80, -180, 180, True ] ],
-        'right-wrist2'        : [ 33, [0,1405,0.02],      [   0,1405,4095], [(-40,0,'opened'),(0,1300,'straight'),(75,4095,'closed')], [    0,  50, -180, 180, False] ],
+        'right-wrist2'        : [ 33, [0,1405,0.02],      [   0,1405,3400], [(-40,0,'opened'),(0,1300,'straight'),(75,4095,'closed')], [    0,  50, -180, 180, False] ],
         'right-thumb1'        : [ 35, [0,0,0.043956],     [   0,   0,4095], [(0,0,'opened'),(180,4095,'closed')],[  -75,   0, -180, 180, True ] ],
         'right-thumb2'        : [ 34, [0,0,0.043956],     [   0,1394,4095], [(0,0,'opened'),(180,4095,'closed')],[  -75,   0, -180, 180, True ] ],
         'right-forefinger'    : [ 36, [0,0,0.043956],     [   0,   0,4095], [(0,0,'opened'),(180,4095,'closed')], [  -75,   0, -180, 180, True ] ],
@@ -181,8 +181,15 @@ class NicoMotors:
             position, self.errno, self.result = self.handler.read2ByteTxRx(port=self.port, dxl_id=id, address=self.ADDR_MX_PRESENT_POSITION)
             return position
         else:
-            return self.getDefaultPosition(k)
-            
+            return 0
+    
+    def getMovingSpeed(self,k):
+        if self.opened:
+            id = self.joints[k][0]
+            speed, self.errno, self.result = self.handler.read2ByteTxRx(port=self.port, dxl_id=id, address=self.ADDR_MX_MOVING_SPEED)
+            return speed
+        else:
+            return 0
     def getPositionDg(self,k):
         return self.bin2dg(k,self.getPosition(k))
     
