@@ -5,6 +5,7 @@ import serial
 import time
 import numpy as np
 
+sys.path.append('../motors')
 import dynamixel_sdk as dynamixel   
 
 def serial_ports(): # tfeldmann https://stackoverflow.com/questions/12090503/listing-available-com-ports-with-python

@@ -5,7 +5,7 @@ import numpy as np
 from nicomotors import NicoMotors
 import matplotlib.pyplot as plt
 
-JOINT = 'right-wrist1'
+JOINT = 'right-elbow1'
 STARTSPEED = 100
 ENDSPEED = 1000
 STEPSPEED = 10
@@ -37,7 +37,7 @@ for r in range(REPETITION):
     diffs = []
     positions = []
     steps = []
-    motors.setMovingSpeed(JOINT, ENDSPEED)
+    motors.setMovingSpeed(JOINT, STARTSPEED)
     motors.setPosition(JOINT, STARTPOS)
     time.sleep(2)
     last = motors.getPosition(JOINT)
@@ -65,7 +65,7 @@ for r in range(REPETITION):
     diffs = []
     positions = []
     steps = []
-    motors.setMovingSpeed(JOINT, ENDSPEED)
+    motors.setMovingSpeed(JOINT, STARTSPEED)
     motors.setPosition(JOINT, STARTPOS)
     time.sleep(2)
     last = motors.getPosition(JOINT)
@@ -133,12 +133,12 @@ ax2.set_xlabel('Blue Steps/Red Speed')
 ax2.legend()
 
 fig.tight_layout()
-fig.savefig(f'{JOINT}_{STARTSPEED}_{CONSTANTSPEED}_{ENDSPEED}_s.png')
+fig.savefig(f'{JOINT}_{STARTSPEED}_{CONSTANTSPEED}_{ENDSPEED}_UKBA.png')
 
 
 
 
-motors.setMovingSpeed(JOINT,ENDSPEED)
+motors.setMovingSpeed(JOINT, STARTSPEED)
 motors.setPosition(JOINT,STARTPOS)
 plt.show()
 
